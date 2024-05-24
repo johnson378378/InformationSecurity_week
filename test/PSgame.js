@@ -8,8 +8,8 @@ function startGame() {
     // 清空上次的提示信息
     message.innerText = '';
 
-    if (isFirstAttempt && !/^\d{4}$/.test(userInput)) {
-        message.innerText = '請輸入4位數字';
+    if (isFirstAttempt && !/^\d{3}$/.test(userInput)) {
+        message.innerText = '請輸入3位數字';
         return;
     } else if (!isFirstAttempt && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(userInput)) {
         message.innerText = '請輸入至少6位數，且包含數字及英文大小寫的密碼';
