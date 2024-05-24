@@ -19,7 +19,7 @@ function startGame() {
     let found = false;
     const startTime = Date.now();
     const timeout = 5000; // 5秒時間限制
-    const maxAttempts = 1000000; // 設置一個合理的最大嘗試次數
+    const maxAttempts = 1000; // 設置一個合理的最大嘗試次數
 
     function attemptCrack() {
         let attempts = 0;
