@@ -32,7 +32,7 @@ function attemptCrack(userInput, length) {
             if (userHash === randomHash) {
                 const elapsedTime = Date.now() - startTime;
                 const elapsedTimeInSeconds = elapsedTime / 1000;
-                message.innerText = `Failed. It took ${elapsedTimeInSeconds.toFixed(5)} seconds to crack your password: ${userInput}. Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.`;
+                message.innerText = `密碼強度太低了，我只花 ${elapsedTimeInSeconds.toFixed(5)} 秒就破解出你的密碼了: ${userInput}. 請改輸入10位包含數字、大小寫英文字母、特殊符號的高強度密碼`;
                 isSecondAttempt = true;
                 cracked = true;
                 return;
