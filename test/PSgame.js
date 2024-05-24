@@ -7,14 +7,14 @@ function startGame() {
     // 清空上次的提示信息
     message.innerText = '';
 
-    if (!isSecondAttempt && /^\d{8,}$/.test(userInput)) {
-        // 第一次要求輸入至少8位純數字
-        attemptCrack(userInput, 8);
+    if (!isSecondAttempt && /^\d{7,}$/.test(userInput)) {
+        // 第一次要求輸入至少7位純數字
+        attemptCrack(userInput, 7);
     } else if (isSecondAttempt && /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{10,}$/.test(userInput)) {
         // 第二次要求輸入至少10位，且包含數字、英文大小寫及特殊符號的密碼
         message.innerText = 'Congratulations! Your password is strong. Answer3 : A';
     } else {
-        message.innerText = isSecondAttempt ? 'Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.' : 'Please enter a password with at least 8 digits.';
+        message.innerText = isSecondAttempt ? 'Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.' : 'Please enter a password with at least 7 digits.';
     }
 }
 
