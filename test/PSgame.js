@@ -1,32 +1,49 @@
+let isFirstAttempt = true;
+
 function startGame() {
     const userInput = document.getElementById('userInput').value;
     const message = document.getElementById('message');
+    const prompt = document.getElementById('prompt');
 
-    if (userInput.length !== 3 || !/^\d{3}$/.test(userInput)) {
-        message.innerText = '請輸入3位數字';
+    // 清空上次的提示信息
+    message.innerText = '';
+
+    if (isFirstAttempt && !/^\d{4}$/.test(userInput)) {
+        message.innerText = '請輸入4位數字';
+        return;
+    } else if (!isFirstAttempt && !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(userInput)) {
+        message.innerText = '請輸入至少6位數，且包含數字及英文大小寫的密碼';
         return;
     }
 
     let found = false;
     const startTime = Date.now();
     const timeout = 5000; // 5秒時間限制
+    const maxAttempts = 3000; // 設置一個合理的最大嘗試次數
 
     function attemptCrack() {
         let attempts = 0;
-        const maxAttempts = 500; // 設置一個合理的最大嘗試次數
         while (!found && (Date.now() - startTime < timeout) && attempts < maxAttempts) {
-            const randomStr = generateRandomString(3, '0123456789');
+            const randomStr = generateRandomString(userInput.length, isFirstAttempt ? '0123456789' : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
             if (randomStr === userInput) {
                 found = true;
                 const elapsedTime = (Date.now() - startTime) / 1000;
-                message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2)} 秒就算出你的密碼是: ${userInput}。請輸入4位以上包含數字及英文大小寫的密碼。`;
+                if (isFirstAttempt) {
+                    message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2)} 秒就算出你的密碼是: ${userInput}。請輸入6位以上包含數字及英文大小寫的密碼。`;
+                    prompt.innerText = '請輸入6位以上包含數字及英文大小寫的密碼:';
+                    document.getElementById('userInput').value = '';
+                    document.getElementById('userInput').setAttribute('maxlength', '20');
+                    isFirstAttempt = false;
+                } else {
+                    message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2)} 秒就算出你的密碼是: ${userInput}`;
+                }
                 return;
             }
             attempts++;
         }
 
         if (!found) {
-            message.innerText = '恭喜，你的密碼強度夠高！這是答案Answer3 : A';
+            message.innerText = isFirstAttempt ? '恭喜，你的密碼強度夠高！這是答案Answer3 : A' : '恭喜，你的密碼強度夠高！';
         }
     }
 
