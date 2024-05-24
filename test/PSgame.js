@@ -12,9 +12,9 @@ function startGame() {
         attemptCrack(userInput, 7);
     } else if (isSecondAttempt && /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{10,}$/.test(userInput)) {
         // 第二次要求輸入至少10位，且包含數字、英文大小寫及特殊符號的密碼
-        message.innerText = 'Congratulations! Your password is strong. Answer3 : A';
+        message.innerText = '不錯不錯!! 密碼強度夠了，給你答案 Answer3 : A';
     } else {
-        message.innerText = isSecondAttempt ? 'Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.' : 'Please enter a password with at least 7 digits.';
+        message.innerText = isSecondAttempt ? '請輸入10位包含數字、大小寫英文字母、特殊符號的高強度密碼' : '請輸入7位數字密碼.';
     }
 }
 
