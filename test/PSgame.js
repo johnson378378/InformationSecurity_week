@@ -13,7 +13,7 @@ function startGame() {
 
     function attemptCrack() {
         let attempts = 0;
-        const maxAttempts = 10000; // 設置一個合理的最大嘗試次數
+        const maxAttempts = 500; // 設置一個合理的最大嘗試次數
         while (!found && (Date.now() - startTime < timeout) && attempts < maxAttempts) {
             const randomStr = generateRandomString(3, '0123456789');
             if (randomStr === userInput) {
