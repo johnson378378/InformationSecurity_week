@@ -14,7 +14,7 @@ function startGame() {
         // 第二次要求輸入至少8位，且包含數字及英文大小寫的密碼
         message.innerText = 'Congratulations! Your password is strong. Answer3 : A';
     } else {
-        message.innerText = isSecondAttempt ? 'Please enter a password with at least 8 characters, including numbers, lowercase and uppercase letters.' : 'Please enter a 4-digit number.';
+        message.innerText = isSecondAttempt ? '請輸入8位，且包含數字及英文大小寫的密碼' : '請輸入4位數字';
     }
 }
 
