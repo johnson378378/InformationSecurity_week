@@ -3,7 +3,7 @@ function startGame() {
     const message = document.getElementById('message');
 
     if (userInput.length !== 3 || !/^\d{3}$/.test(userInput)) {
-        message.innerText = '請輸入4位數字';
+        message.innerText = '請輸入3位數字';
         return;
     }
 
