@@ -19,7 +19,7 @@ function startGame() {
     let found = false;
     const startTime = Date.now();
     const timeout = 5000; // 5秒時間限制
-    const maxAttempts = 3000; // 設置一個合理的最大嘗試次數
+    const maxAttempts = 1000000; // 設置一個合理的最大嘗試次數
 
     function attemptCrack() {
         let attempts = 0;
@@ -43,11 +43,13 @@ function startGame() {
         }
 
         if (!found) {
-            message.innerText = isFirstAttempt ? '恭喜，你的密碼強度夠高！這是答案Answer3 : A' : '恭喜，你的密碼強度夠高！';
+            setTimeout(() => {
+                message.innerText = isFirstAttempt ? '恭喜，你的密碼強度夠高！這是答案Answer3 : A' : '恭喜，你的密碼強度夠高！';
+            }, timeout - (Date.now() - startTime));
         }
     }
 
-    setTimeout(attemptCrack, 0); // 在下一個事件循環中開始嘗試破解
+    attemptCrack();
 }
 
 function generateRandomString(length, characters) {
