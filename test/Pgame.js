@@ -32,7 +32,7 @@ function attemptCrack(userInput, length) {
             if (userHash === randomHash) {
                 const elapsedTime = Date.now() - startTime;
                 const elapsedTimeInSeconds = elapsedTime / 1000;
-                message.innerText = `慘了，我只花 ${elapsedTimeInSeconds.toFixed(5)} 秒破解出你的密碼: ${userInput}.請改成使用(輸入)10位以上包含數字+小寫英文+大寫英文+特殊符號的高強度密碼`;
+                message.innerText = `慘了，我只花 ${elapsedTimeInSeconds.toFixed(5)} 秒破解出你的密碼: ${userInput}. \n請改成使用(輸入)10位以上包含數字+小寫英文+大寫英文+特殊符號的高強度密碼`;
                 isSecondAttempt = true;
                 cracked = true;
                 return;
