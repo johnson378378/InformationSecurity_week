@@ -19,7 +19,7 @@ function startGame() {
     let found = false;
     const startTime = Date.now();
     const timeout = 5000; // 5秒時間限制
-    const maxAttempts = 1000; // 設置一個合理的最大嘗試次數
+    const maxAttempts = 1000000; // 設置一個合理的最大嘗試次數
 
     function attemptCrack() {
         let attempts = 0;
@@ -28,14 +28,15 @@ function startGame() {
             if (randomStr === userInput) {
                 found = true;
                 const elapsedTime = (Date.now() - startTime) / 1000;
+                const elapsedTimeStr = elapsedTime.toFixed(5); // 顯示小數點後5位
                 if (isFirstAttempt) {
-                    message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2) || '0.01'} 秒就算出你的密碼是: ${userInput}。請輸入6位以上包含數字及英文大小寫的密碼。`;
+                    message.innerText = `失敗了，僅需 ${elapsedTimeStr || '0.01'} 秒就算出你的密碼是: ${userInput}。請輸入6位以上包含數字及英文大小寫的密碼。`;
                     prompt.innerText = '請輸入6位以上包含數字及英文大小寫的密碼:';
                     document.getElementById('userInput').value = '';
                     document.getElementById('userInput').setAttribute('maxlength', '20');
                     isFirstAttempt = false;
                 } else {
-                    message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2) || '0.01'} 秒就算出你的密碼是: ${userInput}`;
+                    message.innerText = `失敗了，僅需 ${elapsedTimeStr || '0.01'} 秒就算出你的密碼是: ${userInput}`;
                 }
                 return;
             }
