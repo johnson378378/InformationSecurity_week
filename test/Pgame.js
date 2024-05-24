@@ -7,14 +7,14 @@ function startGame() {
     // 清空上次的提示信息
     message.innerText = '';
 
-    if (!isSecondAttempt && /^\d{7,}$/.test(userInput)) {
-        // 第一次要求輸入至少7位純數字
+    if (!isSecondAttempt && /^\d{7}$/.test(userInput)) {
+        // 第一次要求輸入恰好7位純數字
         attemptCrack(userInput, 7);
     } else if (isSecondAttempt && /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{10,}$/.test(userInput)) {
         // 第二次要求輸入至少10位，且包含數字、英文大小寫及特殊符號的密碼
-        message.innerText = '不錯不錯!! 密碼強度夠了，給你答案 Answer3 : A';
+        message.innerText = 'Congratulations! Your password is strong. Answer3 : A';
     } else {
-        message.innerText = isSecondAttempt ? '請輸入10位包含數字、大小寫英文字母、特殊符號的高強度密碼' : '請輸入7位數字密碼.';
+        message.innerText = isSecondAttempt ? 'Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.' : 'Please enter a password with exactly 7 digits.';
     }
 }
 
@@ -32,7 +32,7 @@ function attemptCrack(userInput, length) {
             if (userHash === randomHash) {
                 const elapsedTime = Date.now() - startTime;
                 const elapsedTimeInSeconds = elapsedTime / 1000;
-                message.innerText = `密碼強度太低了，我只花 ${elapsedTimeInSeconds.toFixed(5)} 秒就破解出你的密碼了: ${userInput}. 請改輸入10位包含數字、大小寫英文字母、特殊符號的高強度密碼`;
+                message.innerText = `Failed. It took ${elapsedTimeInSeconds.toFixed(5)} seconds to crack your password: ${userInput}. Please enter a password with at least 10 characters, including numbers, lowercase and uppercase letters, and special characters.`;
                 isSecondAttempt = true;
                 cracked = true;
                 return;
