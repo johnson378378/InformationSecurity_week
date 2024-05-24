@@ -114,7 +114,7 @@ hr {
 }
 
 .text {
-    width: 70%;
+    width: auto;
     line-height: 1.3em;
     text-align: justify;
 }
