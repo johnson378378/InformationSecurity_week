@@ -2,8 +2,8 @@ function startGame() {
     const userInput = document.getElementById('userInput').value;
     const message = document.getElementById('message');
 
-    if (userInput.length !== 3 || !/^\d{3}$/.test(userInput)) {
-        message.innerText = '請輸入3位數字';
+    if (userInput.length !== 2 || !/^\d{2}$/.test(userInput)) {
+        message.innerText = '請輸入2位數字';
         return;
     }
 
@@ -13,13 +13,13 @@ function startGame() {
 
     function attemptCrack() {
         let attempts = 0;
-        const maxAttempts = 1000; // 設置一個合理的最大嘗試次數
+        const maxAttempts = 10000; // 設置一個合理的最大嘗試次數
         while (!found && (Date.now() - startTime < timeout) && attempts < maxAttempts) {
             const randomStr = generateRandomString(4, '0123456789');
             if (randomStr === userInput) {
                 found = true;
                 const elapsedTime = (Date.now() - startTime) / 1000;
-                message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2)} 秒就算出你的密碼是: ${userInput}。請輸入6位以上包含數字及英文大小寫的密碼。`;
+                message.innerText = `失敗了，僅需 ${elapsedTime.toFixed(2)} 秒就算出你的密碼是: ${userInput}。請輸入4位以上包含數字及英文大小寫的密碼。`;
                 return;
             }
             attempts++;
